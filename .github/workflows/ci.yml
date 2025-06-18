@@ -24,3 +24,10 @@ jobs:
 
       - name: Run welcome.sh script
         run: ./welcome.sh
+
+      - name: Give execute permission to welcome.sh
+        run: chmod +x welcome.sh
+
+      - name: Run welcome.sh script
+        run: ./welcome.sh
+
