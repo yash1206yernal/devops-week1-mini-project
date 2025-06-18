@@ -14,7 +14,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Print welcome message
-        run: echo "✅ GitHub Actions is now working!"
+        run: echo "✅ GitHub Actions pipeline running..."
 
       - name: List project files
         run: ls -l
+
+      - name: Give execute permission to welcome.sh
+        run: chmod +x welcome.sh
+
+      - name: Run welcome.sh script
+        run: ./welcome.sh
