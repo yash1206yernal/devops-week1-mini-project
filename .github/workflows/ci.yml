@@ -19,15 +19,8 @@ jobs:
       - name: List project files
         run: ls -l
 
-      - name: Give execute permission to welcome.sh
-        run: chmod +x welcome.sh
+      - name: Give execute permission to greeting.sh
+        run: chmod +x greeting.sh
 
-      - name: Run welcome.sh script
-        run: ./welcome.sh
-
-      - name: Give execute permission to welcome.sh
-        run: chmod +x welcome.sh
-
-      - name: Run welcome.sh script
-        run: ./welcome.sh
-
+      - name: Run greeting.sh script
+        run: ./greeting.sh
