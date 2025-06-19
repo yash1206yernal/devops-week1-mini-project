@@ -1,4 +1,4 @@
-name: Day 13 CI Workflow
+name: Build and Push Docker Image
 
 on:
   push:
@@ -6,22 +6,18 @@ on:
       - main
 
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Print welcome message
-        run: echo "✅ GitHub Actions pipeline running..."
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: List project files
-        run: ls -l
+      - name: Build Docker image
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/devops-cicd-project:latest .
 
-      - name: Give execute permission to welcome.sh
-        run: chmod +x welcome.sh
-
-      - name: Run welcome.sh script
-        run: ./welcome.sh
-
+      - name: Push to Docker Hub
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/devops-cicd-project:latest
